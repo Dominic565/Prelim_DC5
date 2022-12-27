@@ -1,4 +1,34 @@
 <div class="banshee">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <select class="form-select" wire:model.lazy="year_released">
+                <option value="all">All</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" wire:model.lazy="episode">
+                <option value="all">All</option>
+                <option value="24">24</option>
+                <option value="100">100</option>
+                <option value="300">300</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="1054">1054</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="search" wire:model.lazy="search">
+            </div>
+        </div>
+
+    </div>
     <table class=" table table-striped shadow border border-light">
         <thead class="table table-striped bg-secondary">
             <tr>
@@ -30,6 +60,7 @@
             @endforeach
         </tbody>
     </table>
+    {{$animes->links()}}
 </div>
 
 <style>

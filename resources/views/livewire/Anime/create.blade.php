@@ -1,3 +1,4 @@
+@role('user')
 <div>
     <div class="card border border-light">
         <div class="card-header" style="background-color: rgba(127, 169, 199, 0.527)">
@@ -29,15 +30,33 @@
                 @enderror
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" wire:model.defer="episode">
+                 <select name="episode" class="form-select" wire:model.defer="episode">
+                <option hidden="true">Select Episode</option>
+                <option selected disabled>Select Episode</option>
+                <option value="24">24</option>
+                <option value="100">100</option>
+                <option value="300">300</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="1054">1054</option>
+                </select>
                 <label for="episode">Episode</label>
                 @error('episode')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" wire:model.debounce.500ms="year_released">
-                <label for="year_released">Year Released</label>
+                <select name="year_released" class="form-select" wire:model.defer="year_released">
+                <option hidden="true">Select Year</option>
+                <option selected disabled>Select Year</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                </select>
+                <label for="year_released">Year</label>
                 @error('year_released')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -51,3 +70,5 @@
     </div>
 </div>
 
+@else
+@endrole

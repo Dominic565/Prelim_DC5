@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Anime;
 
 use Livewire\Component;
 use App\Models\Anime;
+use App\Models\Log;
+use App\Events\UserLog;
 
 class Create extends Component
 {
@@ -19,7 +21,7 @@ class Create extends Component
            
         ]);
 
-        Anime::create([
+        $anime = Anime::create([
             'author'                 =>      $this->author,
             'email'                 =>      $this->email,
             'description'                  =>      $this->description,
@@ -27,8 +29,10 @@ class Create extends Component
             'year_released'        =>      $this->year_released,
             
         ]);
+        $log_entry = 'Added a new anime'. $anime->author . 'with the ID' . $anime->id;
+        event(new UserLog($log_entry));
 
-        return redirect('/dashboard')->with('message', 'Added Successfully');
+        return redirect('/animes')->with('message', 'Added Successfully');
     }
 
     public function updated($propertyEmail) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Anime;
 use App\Models\Anime;
+use App\Events\UserLog;
 use Livewire\Component;
 
 class Edit extends Component
@@ -35,6 +36,8 @@ class Edit extends Component
             'year_released'            =>      $this->year_released,
            
         ]);
+        $log_entry = ''. $this->anime->author . 'Updated Succesfully';
+        event(new UserLog($log_entry));
 
         return redirect('/dashboard')->with('message', 'Updated Successfully');
     }
